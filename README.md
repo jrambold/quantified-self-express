@@ -43,4 +43,4 @@ Once the server is running, visit API endpoints in your browser:
 ## Deployed
 * Back end is deployed here: https://tranquil-peak-82064.herokuapp.com/
 
-* To see the [front end](https://github.com/jrambold/quantified-self-fe-express) deployed with this app, visit https://github.com/jrambold/quantified-self-fe-express
+* To see the [front end](https://github.com/jrambold/quantified-self-fe-express) deployed with this app, visit https://jrambold.github.io/quantified-self-fe-express/
