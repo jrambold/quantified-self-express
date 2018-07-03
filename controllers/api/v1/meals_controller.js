@@ -14,6 +14,4 @@ const show = function(req, res, next) {
     })
 }
 
-
-
 module.exports = { index, show }
