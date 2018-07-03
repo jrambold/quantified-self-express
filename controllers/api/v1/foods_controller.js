@@ -14,7 +14,11 @@ const create = function(req, res, next) {
     })
 }
 
+const show = function(req, res, next) {
+  Food.show(req.params.id)
+    .then(function(food) {
+      res.json(food)
+    })
+}
 
-
-
-module.exports = { index, create }
+module.exports = { index, create, show }

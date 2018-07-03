@@ -10,6 +10,10 @@ class Food {
   static create(params) {
     return database('foods').insert(params).returning(['id', 'name', 'calories'])
   }
+
+  static show(id) {
+    return database('foods').where({ id: id }).limit()
+  }
 }
 
 module.exports = Food
