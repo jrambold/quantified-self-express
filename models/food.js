@@ -14,6 +14,10 @@ class Food {
   static show(id) {
     return database('foods').where({ id: id }).limit()
   }
+
+  static update(id, params) {
+    return database('foods').where({ id: id }).update(params).returning(['id', 'name', 'calories'])
+  }
 }
 
 module.exports = Food

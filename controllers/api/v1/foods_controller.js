@@ -21,4 +21,18 @@ const show = function(req, res, next) {
     })
 }
 
-module.exports = { index, create, show }
+const update = function(req, res, next) {
+  Food.update(req.params.id, req.body.food)
+    .then(function(food) {
+      res.json(food[0])
+    })
+}
+
+const update = function(req, res, next) {
+  Food.update(req.params.id)
+    .then(function(food) {
+      res.json(food[0])
+    })
+}
+
+module.exports = { index, create, show, update, destroy }
