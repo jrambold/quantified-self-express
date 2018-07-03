@@ -2,8 +2,8 @@ const Meal = require('../../../models/meal')
 
 const index = function(req, res, next) {
   Meal.all()
-    .then(function(foods) {
-      res.json(foods)
+    .then(function(meals) {
+      res.json(meals)
     })
 }
 

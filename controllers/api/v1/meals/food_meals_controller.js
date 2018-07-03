@@ -1,13 +1,11 @@
 const Meal = require('../../../../models/meal')
+const Food = require('../../../../models/food')
 
 const create = function(req, res, next) {
-  var food = Food.find(req.params.food_id);
-  var meal = Meal.find(req.params.meal_id);
 
-  Meal.create(meal.id, food.id)
+  Meal.create(req.params.meal_id, req.params.id)
     .then(function(result) {
-      var message = { 'message': `Successfully added ${food.name} to ${meal.name}`}
-        res.json(message)
+      res.json(result[0])
     })
 }
 
