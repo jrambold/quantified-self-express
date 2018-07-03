@@ -7,4 +7,14 @@ const index = function(req, res, next) {
     })
 }
 
-module.exports = { index }
+const create = function(req, res, next) {
+  Food.create(req.body.food)
+    .then(function(food) {
+      res.json(food[0])
+    })
+}
+
+
+
+
+module.exports = { index, create }
