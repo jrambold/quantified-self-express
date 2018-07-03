@@ -7,6 +7,13 @@ const index = function(req, res, next) {
     })
 }
 
+const show = function(req, res, next) {
+  Meal.show(req.params.meal_id)
+    .then(function(meal) {
+      res.json(meal)
+    })
+}
 
 
-module.exports = { index }
+
+module.exports = { index, show }
