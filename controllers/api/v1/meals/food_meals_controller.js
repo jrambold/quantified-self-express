@@ -5,8 +5,16 @@ const create = function(req, res, next) {
 
   Meal.create(req.params.meal_id, req.params.id)
     .then(function(result) {
-      res.json(result[0])
+      res.json(message = {"message": `Successfully added ${req.params.id} to ${req.params.meal_id}`})
     })
 }
 
-module.exports = { create }
+const destroy = function(req, res, next) {
+
+  Meal.destroy(req.params.meal_id, req.params.id)
+    .then(function(result) {
+      res.json({"message": `Successfully removed ${req.params.id} from ${req.params.meal_id}`})
+    })
+}
+
+module.exports = { create, destroy }

@@ -7,6 +7,7 @@ const food_meals = require('../controllers/api/v1/meals/food_meals_controller')
 router.get('/', meals.index)
 router.get('/:meal_id/foods', meals.show)
 router.post('/:meal_id/foods/:id', food_meals.create)
+router.delete("/:meal_id/foods/:id", food_meals.destroy);
 
 
 module.exports = router;
