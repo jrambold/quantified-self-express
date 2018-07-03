@@ -28,8 +28,8 @@ const update = function(req, res, next) {
     })
 }
 
-const update = function(req, res, next) {
-  Food.update(req.params.id)
+const destroy = function(req, res, next) {
+  Food.destroy(req.params.id)
     .then(function(food) {
       res.json(food[0])
     })
