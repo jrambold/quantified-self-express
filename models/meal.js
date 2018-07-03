@@ -21,7 +21,7 @@ class Meal {
     return database('food_meals').insert({ meal_id: mealId, food_id: foodId }).returning(['id', 'meal_id', 'food_id'])
   }
 
-  static create(mealId,foodId) {
+  static destroy(mealId,foodId) {
     return database('food_meals').where({'meal_id': mealId, 'food_id': foodId}).del()
   }
 
