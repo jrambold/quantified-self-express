@@ -10,28 +10,42 @@ const index = function(req, res, next) {
 const create = function(req, res, next) {
   Food.create(req.body.food)
     .then(function(food) {
-      res.json(food[0])
+      if(food[0]) {
+        res.json(food[0])
+      } else {
+        res.status(400).send()
+      }
     })
 }
 
 const show = function(req, res, next) {
   Food.show(req.params.id)
     .then(function(food) {
-      res.json(food)
+      if(food) {
+        res.json(food)
+      }
+      else {
+        res.status(404)
+      }
     })
 }
 
 const update = function(req, res, next) {
   Food.update(req.params.id, req.body.food)
     .then(function(food) {
-      res.json(food[0])
+      if(food[0]) {
+        res.json(food[0])
+      }
+      else {
+        res.status(404).send()
+      }
     })
 }
 
 const destroy = function(req, res, next) {
   Food.destroy(req.params.id)
     .then(function(food) {
-      res.json(food[0])
+      res.status(204).send()
     })
 }
 
