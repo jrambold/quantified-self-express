@@ -1,13 +1,13 @@
-# Quantified Self Back-end Rails
+# Quantified Self Back-end Express
 
 ## Initial Setup
 
-1. Clone this repository and rename the repository to `quantified-self-rails` in one command
+1. Clone this repository and rename the repository to `quantified-self-express` in one command
 
   ```shell
   git clone git@github.com:jrambold/quantified-self-express.git
   ```
-2. cd into the `quantified-self-rails` directory
+2. cd into the `quantified-self-express` directory
 
 3. Install the dependencies
 
