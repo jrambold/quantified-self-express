@@ -43,23 +43,24 @@ class Food {
   }
 
   static recipes(id) {
-    database('foods').where({ id: id }).first()
+    return database('foods').where({ id: id }).first()
     .then(function(food) {
-      fetch("http://api.yummly.com/v1/api/recipes?allowedIngredient[]=" + food.name, {
+      return fetch(`http://api.yummly.com/v1/api/recipes?allowedIngredient[]=` + food.name, {
         headers: {
-          'Content-Type': 'application/json',
-          'X-Yummly-App-ID': '8bc6f5c2',
-          'X-Yummly-App-Key': '1acaffb9806aab861fa5e5a1595e2d72'
+          'X-Yummly-App-ID': process.env.YUMMLYID,
+          'X-Yummly-App-Key': process.env.YUMMLYKEY
         }
       })
       .then(function(response) {
-        return response;
+        return response.json()
+      })
+      .then(function(recipes) {
+        return recipes.matches.map(function(recipe) {
+          return { name: recipe.recipeName, url: `http://www.yummly.com/recipe/${recipe.id}` }
+        })
       })
     })
   }
 }
-
-
-
 
 module.exports = Food
