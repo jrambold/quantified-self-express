@@ -22,6 +22,13 @@ class Food {
   static destroy(id) {
     return database('foods').where({ id: id }).del()
   }
+
+  static favorites() {
+    return database.raw('SELECT COUNT(food_id) FROM food_meals GROUP BY food_id ORDER BY COUNT(food_id) DESC LIMIT 1;')
+      .then(function(fav_foods) {
+        return fav_foods.rows
+      })
+  }
 }
 
 module.exports = Food

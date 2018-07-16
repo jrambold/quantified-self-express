@@ -1,7 +1,7 @@
 const Food = require('../../../models/food')
 
 const index = function(req, res, next) {
-  Food.all()
+  Food.favorites()
     .then(function(foods) {
       res.json(foods)
     })
