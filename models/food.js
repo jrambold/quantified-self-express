@@ -24,13 +24,15 @@ class Food {
   }
 
   static favorites() {
-      return database.raw(`SELECT timesEaten, json_agg(json_build_object('name', name, 'calories', calories)) AS foods
+      return database.raw(`SELECT timesEaten, json_agg(json_build_object('name', name, 'calories', calories, 'mealsWhenEaten', mealsWhenEaten)) AS foods
                            FROM
                            (
-                             SELECT COUNT(foods.id) AS timesEaten, foods.name, foods.calories
+                             SELECT COUNT(foods.id) AS timesEaten, foods.name, foods.calories, array_agg(DISTINCT meals.name) AS mealsWhenEaten
                              FROM foods
                              LEFT JOIN food_meals ON foods.id = food_meals.food_id
+                             LEFT JOIN meals ON food_meals.meal_id = meals.id
                              GROUP BY foods.id
+                             HAVING COUNT(foods.id) > 0
                            ) AS favTable
                            GROUP BY timesEaten
                            ORDER BY timesEaten DESC`)
