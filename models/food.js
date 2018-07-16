@@ -1,6 +1,7 @@
 const environment = process.env.NODE_ENV || 'development'
 const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
+const fetch = require('node-fetch')
 
 class Food {
   static all() {
@@ -12,7 +13,7 @@ class Food {
   }
 
   static show(id) {
-    return database('foods').where({ id: id }).limit()
+    return database('foods').where({ id: id }).limit(1)
   }
 
   static update(id, params) {
@@ -40,7 +41,24 @@ class Food {
         return fav_foods.rows
       })
   }
+
+  static recipes(id) {
+    database('foods').where({ id: id }).first()
+    .then(function(food) {
+      fetch("http://api.yummly.com/v1/api/recipes?allowedIngredient[]=" + food.name, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Yummly-App-ID': '8bc6f5c2',
+          'X-Yummly-App-Key': '1acaffb9806aab861fa5e5a1595e2d72'
+        }
+      })
+      .then(function(response) {
+        return response;
+      })
+    })
+  }
 }
+
 
 
 

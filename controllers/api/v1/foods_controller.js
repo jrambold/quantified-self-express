@@ -50,9 +50,9 @@ const destroy = function(req, res, next) {
 }
 
 const recipes = function(req, res, next) {
-  Food.all()
-    .then(function(foods) {
-      res.json(foods)
+  Food.recipes(req.params.id)
+    .then(function(food) {
+      res.send(food)
     })
 }
 
