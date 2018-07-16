@@ -24,7 +24,7 @@ class Food {
   }
 
   static favorites() {
-    return database.raw('SELECT COUNT(food_id) FROM food_meals GROUP BY food_id ORDER BY COUNT(food_id) DESC LIMIT 1;')
+    return database.raw('SELECT COUNT(food_id) as timesEaten, food_id FROM food_meals GROUP BY food_id ORDER BY COUNT(food_id) DESC;')
       .then(function(fav_foods) {
         return fav_foods.rows
       })
