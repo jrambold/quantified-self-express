@@ -45,7 +45,7 @@ class Food {
   static recipes(id) {
     return database('foods').where({ id: id }).first()
     .then(function(food) {
-      return fetch(`http://api.yummly.com/v1/api/recipes?allowedIngredient[]=` + food.name, {
+      return fetch(`http://api.yummly.com/v1/api/recipes?allowedIngredient[]=` + food.name.toLowerCase(), {
         headers: {
           'X-Yummly-App-ID': process.env.YUMMLYID,
           'X-Yummly-App-Key': process.env.YUMMLYKEY
