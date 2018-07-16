@@ -49,4 +49,11 @@ const destroy = function(req, res, next) {
     })
 }
 
-module.exports = { index, create, show, update, destroy }
+const recipes = function(req, res, next) {
+  Food.all()
+    .then(function(foods) {
+      res.json(foods)
+    })
+}
+
+module.exports = { index, create, show, update, destroy, recipes }
