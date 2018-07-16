@@ -24,11 +24,22 @@ class Food {
   }
 
   static favorites() {
-    return database.raw('SELECT COUNT(food_id) as timesEaten, food_id FROM food_meals GROUP BY food_id ORDER BY COUNT(food_id) DESC;')
+    return database.raw(
+            `SELECT timesEaten
+            FROM
+            (
+              SELECT COUNT(food_id) as timesEaten, food_id
+              FROM food_meals
+              GROUP BY food_id
+            ) AS timesTable
+            GROUP BY timesEaten
+            ORDER BY timesEaten DESC;`
+          )
       .then(function(fav_foods) {
         return fav_foods.rows
       })
   }
 }
+
 
 module.exports = Food
